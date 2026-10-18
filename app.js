@@ -15,7 +15,7 @@
       { id: 4, date: "2025-05-20", who: "d1", what: 0, amount: "1300", re: "", prior: false },
       { id: 5, date: "2025-09-12", who: "you", what: 4, amount: "450", re: "200", prior: false },
       { id: 6, date: "2025-10-03", who: "spouse", what: 29, amount: "60", re: "", prior: false }] };
-    drawAll(); say("Loaded the CRA example: Richard, Pauline, Jen who is 16, and Rob who is 19.");
+    drawAll(); $("exnote").hidden = false; say("Loaded the CRA example: Richard, Pauline, Jen who is 16, and Rob who is 19.");
   }
   function whoOptions(sel) {
     const o = [["you", "You"], ...(S.sp !== "" ? [["spouse", "Partner"]] : []), ["kid", "Child under 18"], ...S.deps.map(d => [d.id, d.name || "Relative"])];
@@ -55,11 +55,16 @@
     $("cr").textContent = fmt(p.credit);
     $("who").textContent = p.best.claimer === "you" ? "You" : "Your partner";
     $("win").textContent = `${nice(p.window.start)} to ${nice(p.window.end)}`;
-    const other = p.options[1];
+    const other = p.options[1], R = RULES;
     const gain = p.best.total - p.calendarYear33099 - p.best.deps.reduce((s, d) => s + d.line33199, 0);
     const bits = [];
-    if (other) bits.push(other.total < p.best.total ? `If ${other.claimer === "you" ? "you" : "your partner"} claimed instead, the claim would be ${fmt(other.total)}.` : `It comes out the same whichever of you claims.`);
-    if (gain > 0.5) bits.push(`Using just January to December 2025 would give ${fmt(p.calendarYear33099)} on line 33099, so this period adds ${fmt(gain)}.`);
+    if (other) {
+      const them = other.claimer === "you" ? "you" : "your partner";
+      if (other.usable < p.best.usable) bits.push(`If ${them} claimed instead: ${fmt(other.total)} claimed, worth about ${fmt(other.usable)}${other.usable < other.credit ? ` (${them === "you" ? "you'd" : "they'd"} only have about ${fmt(other.tax)} of federal tax for it to reduce)` : ""}. Choosing ${p.best.claimer === "you" ? "you" : "your partner"} saves about ${fmt(p.best.usable - other.usable)} more.`);
+      else bits.push(`It comes out about the same whichever of you claims.`);
+    }
+    if (p.capped) bits.push(`The credit is non-refundable, so it's limited to the roughly ${fmt(p.best.tax)} of federal tax the claimer owes.`);
+    if (gain > 0.5) bits.push(`Using only January to December 2025 would give ${fmt(p.calendarYear33099)} on line 33099. This period claims ${fmt(gain)} more, about ${fmt(gain * R.creditRate)} off tax, as long as those earlier receipts weren't claimed on your 2024 return.`);
     $("vs").textContent = bits.join(" ");
     // timeline
     const L = pos(p.window.start), W = pos(p.window.end) - L;
@@ -87,6 +92,10 @@
     todo.push(`<li>Every receipt needs the name of the person or company you paid. Don't send them with your return; keep them in case the CRA asks.</li>`);
     if (b.claimer === "spouse") todo.push(`<li>Your partner enters ${fmt(b.famTotal)} on line 33099 of <b>their</b> return.</li>`);
     $("todo").innerHTML = todo.join("");
+    const people = {};
+    for (const r of rc) { const k = label(r.who); (people[k] = people[k] || { n: 0, sum: 0, used: 0 }); people[k].n++; people[k].sum += Calc.net(r); if (p.used.includes(r)) people[k].used += Calc.net(r); }
+    $("byp").innerHTML = `<thead><tr><th scope="col">Person</th><th scope="col">Receipts</th><th scope="col">Paid after insurance</th><th scope="col">In your 12 months</th></tr></thead><tbody>` +
+      Object.entries(people).map(([k, v]) => `<tr><th scope="row">${esc(k)}</th><td>${v.n}</td><td>${fmt(v.sum)}</td><td>${fmt(v.used)}</td></tr>`).join("") + `</tbody>`;
     say(`Claim ${fmt(p.best.total)}, about ${fmt(p.credit)} off federal tax, best claimed by ${$("who").textContent.toLowerCase()}.`);
   }
 
@@ -103,7 +112,7 @@
   $("rows").addEventListener("click", e => { if (!e.target.hasAttribute("data-del")) return; const id = e.target.closest("tr").dataset.id; S.rows = S.rows.filter(r => r.id != id); drawRows(); compute(); $("addRow").focus(); });
   $("example").addEventListener("click", example);
   $("print").addEventListener("click", () => window.print());
-  $("clear").addEventListener("click", () => { if (!confirm("Clear all receipts and incomes?")) return; localStorage.removeItem(KEY); S = { you: "", sp: "", deps: [], rows: [] }; drawAll(); });
+  $("clear").addEventListener("click", () => { $("exnote").hidden = true; if (!confirm("Clear all receipts and incomes?")) return; localStorage.removeItem(KEY); S = { you: "", sp: "", deps: [], rows: [] }; drawAll(); });
 
   if (!S.rows.length && !localStorage.getItem(KEY + ".seen")) { localStorage.setItem(KEY + ".seen", "1"); example(); } else drawAll();
 })();

@@ -6,6 +6,9 @@ const RULES = {
   threshold: 2834,      // lesser of this or 3% of net income
   pctOfIncome: 0.03,
   creditRate: 0.145,    // full-year lowest federal rate for 2025 (15% to June 30, 14% from July 1)
+  // 2025 federal brackets and basic personal amount, from canada.ca "Last year tax rates and income brackets (2025)" and line 30000
+  brackets: [[57375, 0.145], [114750, 0.205], [177882, 0.26], [253414, 0.29], [Infinity, 0.33]],
+  bpa: { max: 16129, min: 14538, from: 177882, to: 253414 },
   checked: "2026-10-18"
 };
 /* A subset of the CRA's "List of common medical expenses". rx = prescription needed, cert = certification in writing needed, t2201 = approved Form T2201 needed. */

@@ -32,4 +32,12 @@ assert.strictEqual(q.best.famTotal, 1000);
 assert.strictEqual(q.best.line33099, 0);
 // a receipt from 2023 can never land in a window ending in 2025
 assert.strictEqual(C.plan({ you: 30000, deps: [] }, [{ date: "2023-12-31", who: "you", amount: 5000 }]).best.famTotal, 0);
+// estimated federal tax: $42,000 -> 42000*14.5% - 16129*14.5%
+assert.ok(Math.abs(C.estTax(42000) - (42000 - 16129) * 0.145) < 0.01);
+assert.strictEqual(C.estTax(15000), 0);
+assert.strictEqual(C.estTax(100000), Math.round((57375 * 0.145 + 42625 * 0.205 - 16129 * 0.145) * 100) / 100);
+// a partner with almost no tax to reduce shouldn't be picked just for a bigger claim
+const low = C.plan({ you: 60000, spouse: 17000, deps: [] }, [{ date: "2025-04-01", who: "you", amount: 4000 }]);
+assert.strictEqual(low.best.claimer, "you");
+assert.ok(low.options.find(o => o.claimer === "spouse").total > low.best.total);
 console.log("all tests pass");

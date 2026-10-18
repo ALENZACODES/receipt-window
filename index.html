@@ -20,7 +20,8 @@
   <section class="hero">
     <h1>Your medical receipts are worth more if you pick the right 12 months.</h1>
     <p class="lede">Canada's medical expense credit doesn't have to follow the calendar year. You can use any 12-month period that ends in 2025, and the lower-income partner usually gets more back. Enter your receipts and Receipt Window does the comparison for you.</p>
-    <p><button type="button" class="btn ghost" id="example">Try the CRA's own example</button></p>
+    <p><button type="button" class="btn ghost" id="example">Load the CRA's own example</button></p>
+    <p class="exnote" id="exnote" hidden>Example loaded: the amounts and incomes for Richard ($42,000), Pauline ($55,000), Jen (16) and Rob (19) come from the CRA's worked example. The receipt dates, the two extra receipts and Rob's $8,000 income are made up for the demo.</p>
   </section>
 
   <div class="grid">
@@ -55,8 +56,8 @@
   <section class="result" aria-labelledby="h-res" id="result">
     <h2 id="h-res"><span class="step">3</span> What you can claim</h2>
     <div class="big">
-      <div><span class="k">Claim on your return</span><b id="amt">$0</b></div>
-      <div><span class="k">Off your federal tax, about</span><b id="cr" class="red">$0</b></div>
+      <div><span class="k">Claim on your return</span><b id="amt">$6,100</b></div>
+      <div><span class="k">Off your federal tax, about</span><b id="cr" class="red">$885</b></div>
       <div><span class="k">Who should claim</span><b id="who">You</b></div>
     </div>
     <p id="vs" class="vs"></p>
@@ -70,6 +71,8 @@
       <div><h3>How it adds up</h3><table class="sum" id="sum"></table></div>
       <div><h3>Before you file</h3><ul class="todo" id="todo"></ul></div>
     </div>
+    <h3>Receipts by person</h3>
+    <table class="byp" id="byp"></table>
     <p class="sr-only" aria-live="polite" id="live"></p>
   </section>
 
@@ -77,9 +80,9 @@
     <summary>How this works and what it leaves out</summary>
     <div class="mbody">
       <p>For the 2025 tax year, you can claim eligible medical expenses paid in any 12-month period ending in 2025, as long as you didn't claim them in 2024. The claim is the total minus the lesser of 3% of the claimer's net income or $2,834. Expenses for you, your partner and your children under 18 go on line 33099, claimed by one of you. Expenses for other relatives who depend on you go on line 33199, worked out with that person's own net income. The federal credit is 14.5% of the claim for 2025, because the lowest federal rate dropped from 15% to 14% on July 1, 2025.</p>
-      <p>Receipt Window tries every 12-month period that starts or ends on one of your receipt dates, works out both partners' claims for each, and keeps the best.</p>
+      <p>The credit only reduces tax you owe; it isn't refunded. Receipt Window estimates each partner's federal tax (2025 brackets minus the basic personal amount, ignoring other credits) and recommends whoever can actually use more of the credit. It tries every 12-month period that starts or ends on one of your receipt dates, works out both partners' claims for each, and keeps the best.</p>
       <p><b>Not included:</b> your province's credit (line 58689 on your provincial form, which uses its own threshold and rate), the refundable medical expense supplement for low-income workers, the top-up tax credit, the disability supports deduction, and the rules for someone who died. It uses one 12-month period for everyone. This is an estimate, not tax advice.</p>
-      <p><b>Sources:</b> <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-33099-33199-eligible-medical-expenses-you-claim-on-your-tax-return.html">CRA, lines 33099 and 33199</a> (rules, the $2,834 threshold, the list of common expenses and the Richard and Pauline example) and <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/whats-new.html">CRA, what's new for 2025</a> (the 14.5% rate). Checked October 18, 2026.</p>
+      <p><b>Sources:</b> <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-33099-33199-eligible-medical-expenses-you-claim-on-your-tax-return.html">CRA, lines 33099 and 33199</a> (rules, the $2,834 threshold, the list of common expenses and the Richard and Pauline example) and <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/whats-new.html">CRA, what's new for 2025</a> (the 14.5% rate), and <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/last-year.html">CRA, 2025 tax rates and brackets</a> with <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-30000-basic-personal-amount.html">line 30000, basic personal amount</a> (the tax estimate). Checked October 18, 2026.</p>
       <p>Nothing you enter leaves this page. It's saved in your browser so you can come back; "Clear everything" removes it.</p>
     </div>
   </details>

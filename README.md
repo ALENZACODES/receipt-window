@@ -8,9 +8,9 @@ Get the most from Canada's medical expense tax credit by picking the right 12 mo
 
 ## Why
 
-It is easy to add up medical receipts for January to December and put them on whichever return gets done first. The CRA allows something better: any 12-month period that ends in the tax year, claimed by either partner. Because the claim is reduced by 3% of the claimer's net income (up to $2,834), the lower-income partner usually gets more back, and a period like July to June can catch a big dental bill that a calendar year would split in half.
+Medical receipts usually get added up for January to December. The CRA allows something better: any 12-month period that ends in the tax year, claimed by either partner. Because the claim is reduced by 3% of the claimer's net income (up to $2,834), the lower-income partner usually gets more back, and a period like July to June can catch a big dental bill that a calendar year would split in half.
 
-The CRA's own example shows it. Richard and Pauline have $6,300 in family expenses. Pauline earns $55,000 and could claim $4,650. Richard earns $42,000 and could claim $5,040. Same receipts, $390 more claimed, just by choosing who files them.
+The CRA's own example shows it. Richard and Pauline have $6,300 in family expenses. Pauline earns $55,000 and could claim $4,650. Richard earns $42,000 and could claim $5,040. Same receipts, $390 more claimed (about $57 off federal tax), just by choosing who files them. Because the credit only reduces tax owed, Receipt Window also checks that the claimer has enough federal tax for the credit to use.
 
 ## What it does
 
