@@ -1,10 +1,12 @@
+![Receipt Window: the best 12 months for Canada's medical expense credit](assets/banner.png)
+
 # Receipt Window
 
 Get the most from Canada's medical expense tax credit by picking the right 12 months and the right person to claim.
 
 **Live demo:** https://alenzacodes.github.io/receipt-window/
 
-![Receipt Window showing the best 12-month period on a timeline](assets/cover.png)
+![Receipt Window with the CRA example loaded](assets/screenshot-desktop.png)
 
 ## Why
 
