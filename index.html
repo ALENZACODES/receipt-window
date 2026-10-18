@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Receipt Window: get the most from Canada's medical expense credit</title>
+<meta name="description" content="Enter your family's medical receipts. Receipt Window finds the best 12-month period, who in the family should claim, and which receipts need a prescription on file.">
+<meta name="author" content="John Khan">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap top-in">
+  <span class="brand"><img src="assets/favicon.svg" alt="" width="26" height="26"> Receipt Window</span>
+  <span class="yr">2025 tax year · federal credit</span>
+</div></header>
+
+<main id="main" class="wrap">
+  <section class="hero">
+    <h1>Your medical receipts are worth more if you pick the right 12 months.</h1>
+    <p class="lede">Canada's medical expense credit doesn't have to follow the calendar year. You can use any 12-month period that ends in 2025, and the lower-income partner usually gets more back. Enter your receipts and Receipt Window does the comparison for you.</p>
+    <p><button type="button" class="btn ghost" id="example">Try the CRA's own example</button></p>
+  </section>
+
+  <div class="grid">
+    <section class="panel" aria-labelledby="h-house">
+      <h2 id="h-house"><span class="step">1</span> Your household</h2>
+      <div class="row2">
+        <label class="fld">Your net income <small>(line 23600)</small>
+          <span class="money"><input id="incYou" inputmode="numeric" autocomplete="off" value="42000"></span></label>
+        <label class="fld">Partner's net income <small>(leave blank if none)</small>
+          <span class="money"><input id="incSp" inputmode="numeric" autocomplete="off" value=""></span></label>
+      </div>
+      <fieldset class="deps">
+        <legend>Adult relatives you support <small>(children 18+, parents, and others who depend on you)</small></legend>
+        <ul id="deps"></ul>
+        <button type="button" class="btn small ghost" id="addDep">Add a person</button>
+      </fieldset>
+    </section>
+
+    <section class="panel" aria-labelledby="h-rc">
+      <h2 id="h-rc"><span class="step">2</span> Receipts <small id="rcCount"></small></h2>
+      <p class="hint">Add receipts paid from 2024 through 2025. Include anything you weren't reimbursed for by an insurance plan.</p>
+      <div class="tablewrap">
+      <table class="rc">
+        <thead><tr><th scope="col">Date paid</th><th scope="col">For</th><th scope="col">What</th><th scope="col">Amount</th><th scope="col">Insurance paid</th><th scope="col">Claimed on 2024 return?</th><th scope="col"><span class="sr-only">Remove</span></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      </div>
+      <button type="button" class="btn small" id="addRow">Add a receipt</button>
+    </section>
+  </div>
+
+  <section class="result" aria-labelledby="h-res" id="result">
+    <h2 id="h-res"><span class="step">3</span> What you can claim</h2>
+    <div class="big">
+      <div><span class="k">Claim on your return</span><b id="amt">$0</b></div>
+      <div><span class="k">Off your federal tax, about</span><b id="cr" class="red">$0</b></div>
+      <div><span class="k">Who should claim</span><b id="who">You</b></div>
+    </div>
+    <p id="vs" class="vs"></p>
+    <figure class="tl" aria-labelledby="tlcap">
+      <figcaption id="tlcap">Your best 12 months: <b id="win"></b></figcaption>
+      <div class="track" id="track" role="img"></div>
+      <div class="ticks"><span>Jan 2024</span><span>Jan 2025</span><span>Dec 2025</span></div>
+      <p class="legend"><span><i class="in"></i>Counted</span><span><i></i>Outside the 12 months</span><span><i class="bad"></i>Not eligible or already claimed</span></p>
+    </figure>
+    <div class="cols">
+      <div><h3>How it adds up</h3><table class="sum" id="sum"></table></div>
+      <div><h3>Before you file</h3><ul class="todo" id="todo"></ul></div>
+    </div>
+    <p class="sr-only" aria-live="polite" id="live"></p>
+  </section>
+
+  <details class="more">
+    <summary>How this works and what it leaves out</summary>
+    <div class="mbody">
+      <p>For the 2025 tax year, you can claim eligible medical expenses paid in any 12-month period ending in 2025, as long as you didn't claim them in 2024. The claim is the total minus the lesser of 3% of the claimer's net income or $2,834. Expenses for you, your partner and your children under 18 go on line 33099, claimed by one of you. Expenses for other relatives who depend on you go on line 33199, worked out with that person's own net income. The federal credit is 14.5% of the claim for 2025, because the lowest federal rate dropped from 15% to 14% on July 1, 2025.</p>
+      <p>Receipt Window tries every 12-month period that starts or ends on one of your receipt dates, works out both partners' claims for each, and keeps the best.</p>
+      <p><b>Not included:</b> your province's credit (line 58689 on your provincial form, which uses its own threshold and rate), the refundable medical expense supplement for low-income workers, the top-up tax credit, the disability supports deduction, and the rules for someone who died. It uses one 12-month period for everyone. This is an estimate, not tax advice.</p>
+      <p><b>Sources:</b> <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-33099-33199-eligible-medical-expenses-you-claim-on-your-tax-return.html">CRA, lines 33099 and 33199</a> (rules, the $2,834 threshold, the list of common expenses and the Richard and Pauline example) and <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/whats-new.html">CRA, what's new for 2025</a> (the 14.5% rate). Checked October 18, 2026.</p>
+      <p>Nothing you enter leaves this page. It's saved in your browser so you can come back; "Clear everything" removes it.</p>
+    </div>
+  </details>
+  <p class="actions"><button type="button" class="btn ghost" id="print">Print my summary</button> <button type="button" class="btn ghost" id="clear">Clear everything</button></p>
+</main>
+<footer class="foot"><div class="wrap">Built by John Khan. <a href="https://github.com/ALENZACODES/receipt-window">Source on GitHub</a></div></footer>
+<script src="rules.js"></script>
+<script src="calc.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
