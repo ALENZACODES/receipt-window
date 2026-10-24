@@ -2,6 +2,10 @@
 
 # Receipt Window
 
+**Pick the best 12 months and the right partner to claim Canada's medical expense tax credit. Runs in the browser.**
+
+[![Live demo](https://img.shields.io/badge/live_demo-open-011F5B?style=flat-square)](https://alenzacodes.github.io/receipt-window/) [![Licence: MIT](https://img.shields.io/badge/licence-MIT-990000?style=flat-square)](LICENSE) ![Built with JavaScript](https://img.shields.io/badge/built_with-JavaScript-4a4a4a?style=flat-square)
+
 Get the most from Canada's medical expense tax credit by picking the right 12 months and the right person to claim.
 
 **Live demo:** https://alenzacodes.github.io/receipt-window/
@@ -37,15 +41,7 @@ Nothing is uploaded. It runs in your browser and saves to `localStorage` so you 
 - https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-33099-33199-eligible-medical-expenses-you-claim-on-your-tax-return.html
 - https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/whats-new.html
 
-## Limits
-
-- Federal credit only. Your province adds its own credit with its own threshold and rate.
-- Leaves out the refundable medical expense supplement, the top-up tax credit, the disability supports deduction and the rules for someone who died.
-- Uses one 12-month period for everyone in the household.
-- The expense list is a subset of the CRA's. "Something else" is counted but flagged to check.
-- An estimate, not tax advice.
-
-## Run it
+## Quick start
 
 Plain HTML, CSS and JavaScript. No build step.
 
@@ -62,6 +58,18 @@ node test.js
 | `calc.js` | Pure functions: periods, reduction, the planner |
 | `app.js` | Forms, timeline, summary and saving |
 
-## License
+## Limits
+
+- Federal credit only. Your province adds its own credit with its own threshold and rate.
+- Leaves out the refundable medical expense supplement, the top-up tax credit, the disability supports deduction and the rules for someone who died.
+- Uses one 12-month period for everyone in the household.
+- The expense list is a subset of the CRA's. "Something else" is counted but flagged to check.
+- An estimate, not tax advice.
+
+## Licence
 
 MIT. See [LICENSE](LICENSE).
+
+---
+
+More of my work is on my [GitHub profile](https://github.com/ALENZACODES).
